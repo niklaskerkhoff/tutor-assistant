@@ -1,0 +1,47 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: tutor-assistant-app-service
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://${SPRING_DATASOURCE_HOST}/tutor-assistant-app-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+
+logging:
+  file:
+    name: ${LOGS_PATH}
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 50
+  level:
+    root: info
+
+
+app:
+  tutor-assistant:
+    base-url: ${TUTOR_ASSISTANT_BASE_URL}
+  seaweedfs:
+    master-url: ${SEAWEEDFS_MASTER_URL}

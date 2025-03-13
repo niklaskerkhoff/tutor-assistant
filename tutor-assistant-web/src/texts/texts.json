@@ -1,0 +1,130 @@
+{
+  "Calendar": {
+    "en": "Calendar",
+    "de": "Kalender"
+  },
+  "Chats": {
+    "en": "Chats",
+    "de": "Chats"
+  },
+  "Ctrl + Enter": {
+    "en": "Ctrl + Enter",
+    "de": "Strg + Enter"
+  },
+  "Delete": {
+    "en": "Delete",
+    "de": "Löschen"
+  },
+  "Documents": {
+    "en": "Documents",
+    "de": "Dokumente"
+  },
+  "Embed": {
+    "en": "Embed",
+    "de": "Einbetten"
+  },
+  "Feedback": {
+    "en": "Feedback",
+    "de": "Feedback"
+  },
+  "File": {
+    "en": "File",
+    "de": "Datei"
+  },
+  "Files": {
+    "en": "Files",
+    "de": "Dateien"
+  },
+  "General": {
+    "en": "General",
+    "de": "Allgemein"
+  },
+  "Logout": {
+    "en": "Logout",
+    "de": "Abmelden"
+  },
+  "Main Settings": {
+    "en": "Main Settings",
+    "de": "Main Settings"
+  },
+  "Message": {
+    "en": "Message",
+    "de": "Nachricht"
+  },
+  "New Chat": {
+    "en": "New Chat",
+    "de": "Neuer Chat"
+  },
+  "Open": {
+    "en": "Open",
+    "de": "Öffnen"
+  },
+  "Page": {
+    "en": "Page",
+    "de": "Seite"
+  },
+  "Sorry, an error occurred!": {
+    "en": "Sorry, an error occurred!",
+    "de": "Entschuldigung, es ist ein Fehler aufgetreten!"
+  },
+  "Relevance": {
+    "en": "Relevance",
+    "de": "Relevanz"
+  },
+  "Resource": {
+    "en": "Resource",
+    "de": "Ressource"
+  },
+  "Resources": {
+    "en": "Resources",
+    "de": "Ressourcen"
+  },
+  "Select a message": {
+    "en": "Select a message",
+    "de": "Wähle eine Nachricht aus"
+  },
+  "Send": {
+    "en": "Send",
+    "de": "Senden"
+  },
+  "Setting": {
+    "en": "Setting",
+    "de": "Einstellung"
+  },
+  "Sources": {
+    "en": "Sources",
+    "de": "Quellen"
+  },
+  "Summary": {
+    "en": "Summary",
+    "de": "Zusammenfassung"
+  },
+  "Thank You for your feedback!": {
+    "en": "Thank You for your feedback!",
+    "de": "Vielen Dank für dein Feedback!"
+  },
+  "Today": {
+    "en": "Today",
+    "de": "Heute"
+  },
+  "Uploads": {
+    "en": "Uploads",
+    "de": "Uploads"
+  },
+  "Users": {
+    "en": "Users",
+    "de": "Benutzer"
+  },
+  "Value Settings": {
+    "en": "Value Settings",
+    "de": "Value Settings"
+  },
+  "Website": {
+    "en": "Website",
+    "de": "Website"
+  },
+  "Websites": {
+    "en": "Websites",
+    "de": "Websites"
+  }
+}

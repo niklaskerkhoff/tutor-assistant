@@ -1,0 +1,42 @@
+Ich möchte, dass du alle Termine und Fristen im folgenden Kontext als JSON darstellst.
+Verwende die keys `title`, `date`, `time`. Wenn du keine Uhrzeit findest, lasse `time` einfach weg.
+Verwende keine Zeitspannen, sondern lege für Start und Ende separate Ereignisse an. Mache deutlich, welches der Start und welches das Ende ist.
+Zeige alle Ereignisse seit 01.01.2023
+
+Beispielausgabe:
+{{
+  "entries": [
+    {{
+      "title": "Vorstellungsgespräch",
+      "date": "22.10.2024",
+      "time": "12:00"
+    }},
+    {{
+      "title": "Start Aufgaben 1",
+      "date": "28.10.2024",
+    }},
+    {{
+      "title": "Beginn Abgabe der Aufgaben",
+      "date": "06.11.2024",
+      "time": "13:45"
+    }},
+    {{
+      "title": "Sport",
+      "date": "06.11.2024",
+      "time": "13:45"
+    }},
+    {{
+      "title": "Ende Abgabe der Aufgaben",
+      "date": "02.01.2024",
+    }},
+  ]
+}}
+
+Falls keine Ereignisse gefunden wurden, gib einfach folgendes aus:
+{{
+  "entries": [
+  ]
+}}
+
+Der Kontext:
+{context}

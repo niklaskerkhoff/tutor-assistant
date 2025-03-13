@@ -1,0 +1,103 @@
+services:
+  tutor-assistant-nginx-proxy:
+    image: nginx:1.27
+    container_name: tutor-assistant-nginx-proxy
+    restart: always
+    volumes:
+      - ./tutor-assistant-nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - tutor-assistant
+      - reverse-proxy
+    depends_on:
+      - tutor-assistant-web
+      - tutor-assistant-app-service
+      - tutor-assistant-keycloak
+
+  tutor-assistant:
+    image: ghcr.io/niklaskerkhoff/tutor-assistant:latest
+    container_name: tutor-assistant
+    restart: always
+    env_file:
+      - env/.tutor-assistant.env
+    volumes:
+      - ./data/tutor-assistant-data:/var/lib/tutor-assistant/data
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-web:
+    image: ghcr.io/niklaskerkhoff/tutor-assistant-web:latest
+    container_name: tutor-assistant-web
+    restart: always
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-app-service:
+    image: ghcr.io/niklaskerkhoff/tutor-assistant-app-service:latest
+    container_name: tutor-assistant-app-service
+    restart: always
+    depends_on:
+      - tutor-assistant-app-service-postgres
+    env_file:
+      - env/.tutor-assistant-app-service.env
+    volumes:
+      - ./data/tutor-assistant-app-service-logs:/var/log/tutor-assistant-app-service-logs
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-app-service-postgres:
+    image: postgres:16.4-alpine3.20
+    container_name: tutor-assistant-app-service-postgres
+    restart: always
+    env_file:
+      - env/.tutor-assistant-app-service-postgres.env
+    volumes:
+      - ./data/tutor-assistant-app-service-postgres-data:/var/lib/postgresql/data
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-keycloak:
+    image: quay.io/keycloak/keycloak:25.0.4
+    container_name: tutor-assistant-keycloak
+    restart: always
+    command: start --proxy-headers forwarded
+    depends_on:
+      - tutor-assistant-keycloak-postgres
+    env_file:
+      - env/.tutor-assistant-keycloak.env
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-keycloak-postgres:
+    image: postgres:16.4-alpine3.20
+    container_name: tutor-assistant-keycloak-postgres
+    restart: always
+    env_file:
+      - env/.tutor-assistant-keycloak-postgres.env
+    volumes:
+      - ./data/tutor-assistant-keycloak-postgres-data:/var/lib/postgresql/data
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-seaweedfs-master:
+    image: chrislusf/seaweedfs
+    container_name: tutor-assistant-seaweedfs-master
+    restart: always
+    command: 'master'
+    networks:
+      - tutor-assistant
+
+  tutor-assistant-seaweedfs-volume:
+    image: chrislusf/seaweedfs
+    container_name: tutor-assistant-seaweedfs-volume
+    restart: always
+    command: 'volume -mserver tutor-assistant-seaweedfs-master:9333 -dir /var/lib/seaweedfs/data -publicUrl  tutor-assistant-seaweedfs-volume:8080'
+    volumes:
+      - ./data/tutor-assistant-seaweedfs-volume-data:/var/lib/seaweedfs/data
+    networks:
+      - tutor-assistant
+
+networks:
+  reverse-proxy:
+    external: true
+  tutor-assistant:
+    external: false

@@ -1,0 +1,10 @@
+Fasse den Chat zusammen. Gib ihm einen kurzen prägnanten Titel, einen Untertitel, der das Anliegen des Benutzers ausdrückt und eine Zusammenfassung der Ergebnisse.
+Es soll nicht im Stil sein "Der Benutzer möchte dies und jenes" sondern für einen allgemeinen Benutzer formuliert sein.
+
+Die Zusammenfassung soll nur 1 bis 2 Sätze sein oder stichpunktartig sein, wenn sinnvoll als Markdown-Stichpunkte.
+Die Zusammenfassung soll die Ergebnisse wiederspiegeln und nicht zwangsläufig den Verlauf.
+
+Gib deine Antwort als JSON-Objekt mit den Keys `title`, `subtitle` und `content`. `content` ist dabei die eigentliche Zusammenfassung.
+Die Werte der Keys `title`, `subtitle` und `content` müssen unter allen Umständen einfache Strings sein, sonst geht die Applikation kaputt!
+Übernehme für die Werte die Sprache des Chats.
+Gib keine weitere Beschreibung aus.

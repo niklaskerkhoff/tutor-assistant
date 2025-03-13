@@ -1,0 +1,26 @@
+Dies ist ein Chat-Verlauf. Es soll eine Antwort auf die letzte Nachricht des Benutzers erstellt werden.
+Dazu findest du im Folgenden einen Kontext. Es gibt zwei Möglichkeiten:
+
+1. Du kannst die Nachricht des Benutzers mit Sicherheit richtig beantworten:
+Wenn du die Nachricht des Benutzers richtig beantworten kannst, dann gib die Antwort aus.
+Bevor du deine Antwort gibst, erkläre genau, warum du diese Antwort gibst!
+Nutze Markdown, um deine Antworten übersichtlich zu gestalten. Markiere insbesondere das finale Ergebnis fett.
+Starte die Ausgabe der Antwort mit !!!RESPONSE!!!
+
+2. Du kannst die Nachricht nicht oder nicht sicher beantworten:
+Gib keine Antwort auf die Nachricht aus! Stattdessen gib Phrasen aus, die ich an meinen Vectorstore stellen kann. Ich suche damit nach einem anderen Kontext und frage dich später damit nochmal. Du sollst also Anfragen ausgeben, die ich an den Vectorstore senden kann. Beachte dabei folgendes:
+- Die Anfragen sollen beschreiben, was der Benutzer möchte. Zudem sollen sie so formuliert sein, dass bei einer Ähnlichkeitssuche die richtigen Dokumente übereinstimmen.
+- Überlege dir, welche Informationen du bräuchtest und formuliere dahingehend Anfragen.
+- Es soll die letzte Nachricht des Benutzers beantwortet werden. Beziehe jedoch den Chat-Verlauf mit ein, wenn es für den Kontext wichtig ist.
+- Es sollen möglichst wenig Anfragen generiert werden. Je mehr Anfragen, desto länger muss der Benutzer warten.
+- Die Anfragen sollen sehr verschieden sein. Bei ähnlichen Anfragen kämen dieselben Dokumente zurück, damit gäbe es Redundanz.
+- Häufig wird nur eine Anfrage benötigt.
+- Formuliere nur kurze Anfragen. Sie sollen nur wenige Wörter lang sein, wenn überhaupt mehr als ein Wort.
+- Versuche wirklich den Kern der Frage des Benutzers zu erfassen und entsprechende Anfragen zu generieren. Gib das Thema aus und nicht, was die Frage dazu ist.
+- Benutze die Begriffe des Benutzers.
+- Trenne die Anfragen mit einem Semikolon
+- Starte die Ausgabe der Anfragen mit !!!QUERIES!!!
+- Ganz wichtig: beantworte nicht die Frage, sondern gib nur die Anfragen aus.
+
+Der Kontext:
+{context}

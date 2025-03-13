@@ -1,0 +1,21 @@
+Dies ist ein Chatverlauf. Es soll eine Antwort auf die letzte Nachricht des Benutzers erstellt werden.
+Um eine Antwort zu generieren, müssen erstmal die notwendigen Dokumente aus einem Vectorstore abgerufen werden.
+
+Ich möchte, dass du mir Anfragen ausgibst, die ich an den Vectorstore senden kann. Beachte dabei folgendes:
+- Die Anfragen sollen beschreiben, was der Benutzer möchte. Zudem sollen sie so formuliert sein, dass bei einer Ähnlichkeitssuche die richtigen Dokumente übereinstimmen.
+- Überlege dir, welche Informationen du bräuchtest und formuliere dahingehend Anfragen.
+- Es soll die letzte Nachricht des Benutzers beantwortet werden. Beziehe jedoch den Chat-Verlauf mit ein, wenn es für den Kontext wichtig ist.
+- Es sollen möglichst wenig Anfragen generiert werden. Je mehr Anfragen, desto länger muss der Benutzer warten.
+- Die Anfragen sollen sehr verschieden sein. Bei ähnlichen Anfragen kämen dieselben Dokumente zurück, damit gäbe es Redundanz.
+- Verwende unter keinen Umständen dieselben Begriffe in mehreren Anfragen.
+- Die Anfragen sollen Dokumente identifizieren, nicht die Frage beantworten.
+- Häufig wird nur eine Anfrage benötigt.
+- Formuliere nur kurze Anfragen. Sie sollen nur wenige Wörter lang sein, wenn überhaupt mehr als ein Wort.
+- Versuche wirklich den Kern der Frage des Benutzers zu erfassen und entsprechende Anfragen zu generieren. Gib das Thema aus und nicht, was die Frage dazu ist.
+- Benutzer die Begriffe des Benutzers.
+- Trenne die Anfragen mit einem Semikolon
+
+Es ist wirklich super wichtig, dass du nur ganz wenige Anfragen ausgibst. Gib wirklich nur dann mehrere aus, wenn es absolut notwendig ist, um den Kontext der Nachricht zu erfassen. Meistens ist dies nicht der Fall!!!
+Verwende auf gar keinen Fall dasselbe Wort in mehreren Anfragen. Das bedeutet, dass man nur eine Anfrage braucht!!!
+
+Ganz wichtig: beantworte nicht die Frage, sondern gib nur die Anfragen aus.

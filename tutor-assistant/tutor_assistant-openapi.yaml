@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: Tutor Assistant
+  description: Beantwortung von Fragen zu relevanten Dokumenten der Programmieren-Vorlesung am KIT
+  version: 1.0.0
+servers:
+  - url: http://localhost:8500
+
+paths:
+  /chats/message:
+    post:
+      summary: Anfrage an den Tutor Assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+            example:
+              # noinspection YAMLSchemaValidation
+              message: Wie heiße ich?
+              # noinspection YAMLSchemaValidation
+              history:
+                - content: Hallo, ich heiße Niklas
+                  role: user
+                - content: Ich bin ein KI-Chatbot, wie kann ich dir helfen?
+                  role: ai
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Ein Token der Antwort pro Event
+
+  /chats/summarize:
+    post:
+      summary: Chat Verlauf zusammenfassen lassen
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatSummaryRequest'
+            example:
+              # noinspection YAMLSchemaValidation
+              history:
+                - content: Hallo, ich heiße Niklas
+                  role: user
+                - content: Ich bin ein KI-Chatbot, wie kann ich dir helfen?
+                  role: ai
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatSummaryResponse'
+  /calendar:
+    post:
+      summary: Terminen und Fristen
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Terminen und Fristen als Markdown
+
+  /documents/add:
+    post:
+      summary: Dokument zu VectorStore hinzufügen
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentAddRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentIdsList'
+
+  /documents/delete:
+    post:
+      summary: Dokument aus VectorStore löschen
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentIdsList'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: true genau dann wenn Löschung erfolgreich
+
+components:
+  schemas:
+    ChatMessageRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Anfrage an den Tutor Assistant
+        history:
+          $ref: '#/components/schemas/History'
+
+      required:
+        - message
+
+    ChatSummaryRequest:
+      type: object
+      properties:
+        history:
+          $ref: '#/components/schemas/History'
+    ChatSummaryResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Thema
+        subtitle:
+          type: string
+          description: Zusammenfassung der Anfrage
+        content:
+          type: string
+          description: Zusammenfassung der Ergebnisse
+
+    DocumentAddRequest:
+      type: object
+      description: Konfiguration, wie das Dokument geladen werden soll
+      properties:
+        loaderType:
+          type: string
+          description: Spezifiziert, welcher Loader verwendet werden soll
+        loaderParams:
+          type: object
+          description: Parameter zur Erstellung des Loaders (bpsw. url einer Website)
+
+    DocumentIdsList:
+      type: array
+      description: Ids der Dokumente
+      items:
+        type: string
+        description: Id
+
+
+    History:
+      type: array
+      description: Bisheriger Chat Verlauf
+      items:
+        type: object
+        description: Nachricht
+        properties:
+          content:
+            type: string
+            description: Inhalt der Nachricht
+          role:
+            type: string
+            enum: [ user, ai ]
+            description: Absender der Nachricht
+        required:
+          - content
+          - role
